@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jo-C Web Development</title>
+    <link rel="stylesheet" href="contact.css">
+    <script src="https://kit.fontawesome.com/9864369d45.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="gyan">
+  
+  <video autoplay loop class="backvideo" muted plays-inline>
+    <source src="/video.mp4" type="video/mp4">
+   </video>
+     <a href="index.html" class="btn-5">Back To Home</a>
+    
+   </div>
+  
+  <div>
+    <div class="contact">
+      <form name="submit-to-google-sheet">
+        <h1>GET IN TOUCH</h1>
+        <input type="text" name="Name" placeholder="Your Name" required>
+        <input type="Email" name="Email" placeholder="Your email" required>
+        <input type="phone" name="phone" placeholder="Contact no." required>
+        <textarea name="Message"  rows="3" placeholder="Discription"></textarea>
+        <button type="submit">Submit</button>
+        <span id="msg"></span>
+      </form>
+      
+    </div>
+  </div>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyqF06QFkp13BvgDH4NOKQRyvyZLBW_IO7pMlyel8PtzKFa4edm0oV_esE5wo5G9d6n/exec'
+    const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg")
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML="Message Sent Successfully"
+            setTimeout(function(){
+                msg.innerHTML=""
+            },1000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+
+</script>
+
+
+
+
+</body>
+
+</html>
